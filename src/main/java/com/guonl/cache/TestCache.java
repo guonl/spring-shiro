@@ -48,7 +48,9 @@ public class TestCache {
             exec.execute(new Runnable() {
                 public void run() {
                     if (!cacheManagerImpl.isContains(key)) {
-                        cacheManagerImpl.putCache(key, 1, 0);
+                        synchronized (this){
+                            cacheManagerImpl.putCache(key, 1, 0);
+                        }
                     } else {
                         //因为+1和赋值操作不是原子性的，所以把它用synchronize块包起来
                         synchronized (cacheManagerImpl) {
@@ -68,4 +70,16 @@ public class TestCache {
 
         System.out.println(cacheManagerImpl.getCacheDataByKey(key).toString());
     }
+    /**
+     * 可以看到并不是预期的结果100，为什么呢？ConcurrentHashMap只能保证单次操作的原子性，但是当复合使用的时候，没办法保证复合操作的原子性，以下代码：
+     *
+     * if (!cacheManagerImpl.isContains(key)) {
+     *      cacheManagerImpl.putCache(key, 1, 0);
+     *  }
+     *
+     * 多线程的时候回重复更新value，设置为1，所以出现结果不是预期的100。所以办法就是在CacheManagerImpl.java中都加上synchronized，但是这样一来相当于操作都是串行，
+     * 使用ConcurrentHashMap也没有什么意义，不过只是简单的缓存还是可以的。或者对测试方法中的run里面加上synchronized块也行，都是大同小异
+     *
+     */
+
 }
