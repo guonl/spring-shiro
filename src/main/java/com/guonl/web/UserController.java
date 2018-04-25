@@ -38,6 +38,7 @@ public class UserController {
         UsernamePasswordToken token = new UsernamePasswordToken(userVO.getName(),userVO.getPassword());
 
         try {
+            token.setRememberMe(userVO.getRememberMe());//设置true  记住我
             subject.login(token);
         } catch (AuthenticationException e) {
             logger.error("登录失败：", e.getMessage());

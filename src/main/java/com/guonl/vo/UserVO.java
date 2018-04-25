@@ -13,6 +13,8 @@ public class UserVO implements Serializable{
 
     private String password;
 
+    private Boolean rememberMe;
+
     public String getName() {
         return name;
     }
@@ -27,5 +29,13 @@ public class UserVO implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Boolean rememberMe) {
+        this.rememberMe = rememberMe;
     }
 }

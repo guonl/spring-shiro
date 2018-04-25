@@ -1,11 +1,10 @@
-package com.guonl.cache;
+package com.guonl.java.cache;
 
 import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 /**
  * Created by guonl

@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService{
         UserRolesExample.Criteria criteria = userRolesExample.createCriteria();
         criteria.andUsernameEqualTo(userName);
         List<UserRoles> userRoles = userRolesMapper.selectByExample(userRolesExample);
+        System.out.println("从数据库中获取授权数据");
         Set<String> set = new HashSet<>();
         if(!userRoles.isEmpty()){
             for (UserRoles userRole : userRoles) {

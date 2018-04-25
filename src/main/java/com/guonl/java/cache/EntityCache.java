@@ -1,4 +1,4 @@
-package com.guonl.cache;
+package com.guonl.java.cache;
 
 /**
  * Created by guonl

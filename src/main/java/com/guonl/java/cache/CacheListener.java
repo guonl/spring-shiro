@@ -1,4 +1,4 @@
-package com.guonl.cache;
+package com.guonl.java.cache;
 
 import java.util.logging.Logger;
 
